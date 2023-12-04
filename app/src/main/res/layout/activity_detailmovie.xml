@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailmovieActivity"
+    android:background="@color/bg_color"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detail Your Movie"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/pink_purple"
+        android:textSize="25sp"
+        android:fontFamily="@font/montserrat_extrabold"/>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="5dp"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        />
+
+    <ImageView
+        android:id="@+id/moviePicture"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/movie1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"/>
+
+
+    <TextView
+        android:id="@+id/detailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inception"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="23sp"
+        android:fontFamily="@font/montserrat_extrabold"/>
+
+    <TextView
+        android:id="@+id/detailDescription"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Inception adalah film fiksi ilmiah tahun 2010 yang disutradarai oleh Christopher Nolan dan diproduseri oleh Christopher Nolan dan Emma Thomas. Naskah film ini ditulis oleh Christopher Nolan"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center_horizontal"
+        android:textSize="18sp"
+        android:fontFamily="@font/montserrat_light"
+        android:textAlignment="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/star"/>
+
+        <TextView
+            android:id="@+id/detailRating"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="4.5"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/director_chair"
+            android:layout_marginLeft="80dp"
+            />
+
+        <TextView
+            android:id="@+id/detailDirector"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="C. Nolan"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Action"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/pink_purple"
+        android:textSize="25sp"
+        android:fontFamily="@font/montserrat_extrabold"/>
+
+    <View
+        android:layout_width="350dp"
+        android:layout_height="5dp"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deleteButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/del_button"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/editButton"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/edit_button"
+            android:layout_marginLeft="60dp"/>
+    </LinearLayout>
+
+</LinearLayout>

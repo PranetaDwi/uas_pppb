@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873093312877",
+    "project_id": "uas-pppb-98b74",
+    "storage_bucket": "uas-pppb-98b74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873093312877:android:5fe5e188cd7a1bf8ce2a64",
+        "android_client_info": {
+          "package_name": "com.neta.uas_pppb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFFAurT1TzRZ3jhTB_nZDj0b_pNdOvJ9o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
