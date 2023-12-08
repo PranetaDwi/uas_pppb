@@ -13,6 +13,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prefManager: PrefManager
     private val firestore = FirebaseFirestore.getInstance()
     private val usersCollectionRef = firestore.collection("users")
+    private var userId : String = ""
+
+    companion object {
+        const val USER_ID = "user_id"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -55,9 +60,10 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { querySnapshot ->
                 if (!querySnapshot.isEmpty) {
                     val userDocument = querySnapshot.documents[0]
-                    val userId = userDocument.id
+                    userId = userDocument.id
                     prefManager.saveUsername(username)
                     prefManager.savePassword(password)
+                    prefManager.saveUserId(userId)
                     prefManager.setLoggedIn(true)
                     checkLoginStatus()
                     finish()
@@ -74,6 +80,7 @@ class MainActivity : AppCompatActivity() {
         val inputPassword = binding.passwordInput.text.toString()
         return username == inputUsername && password == inputPassword
     }
+
     private fun checkLoginStatus(){
         val isLoggedIn = prefManager.isLoggedIn()
         if (isLoggedIn) {
@@ -81,6 +88,8 @@ class MainActivity : AppCompatActivity() {
             if (prefManager.getUsername() == "adminkeren" && prefManager.getPassword() == "haloneta"){
                 startActivity(Intent(this@MainActivity, AdminActivity::class.java))
             } else {
+//                val intentToFragmentActivity = Intent(this@MainActivity, FragmentActivity::class.java)
+//                intentToFragmentActivity.putExtra(USER_ID, userId)
                 startActivity(Intent(this@MainActivity, FragmentActivity::class.java))
             }
             finish()

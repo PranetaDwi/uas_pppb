@@ -17,12 +17,14 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="460px"
-                android:src="@drawable/movie1" />
+                <ImageView
+                    android:id="@+id/txtImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="460px"
+                    android:src="@drawable/movie1" />
 
                 <TextView
+                    android:id="@+id/txtTitle"
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
@@ -31,6 +33,7 @@
                     android:fontFamily="@font/montserrat_bold"/>
 
                 <TextView
+                    android:id="@+id/txtDirector"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

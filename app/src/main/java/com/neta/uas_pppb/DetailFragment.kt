@@ -1,59 +1,83 @@
 package com.neta.uas_pppb
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.bumptech.glide.Glide
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.neta.uas_pppb.databinding.FragmentAddmovieBinding
+import com.neta.uas_pppb.databinding.FragmentDetailBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [DetailFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class DetailFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private val firestore = FirebaseFirestore.getInstance()
+    private val MoviesCollectionRef = firestore.collection("movies")
+    private val FavoritesCollectionRef = firestore.collection("favorites")
+    private var _binding: FragmentDetailBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var prefManager: PrefManager
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DetailFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DetailFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val movieId = arguments?.getString("movieId").toString()
+        prefManager = PrefManager.getInstance(requireContext())
+
+        val userId = prefManager.getUserId()
+
+        with(binding){
+            if (!movieId.isNullOrBlank()) {
+                val movieDocumentRef = MoviesCollectionRef.document(movieId)
+                movieDocumentRef.get()
+                    .addOnSuccessListener { documentSnapshot ->
+                        if (documentSnapshot.exists()) {
+                            detailTitle.setText(documentSnapshot.getString("title"))
+                            detailDescription.setText(documentSnapshot.getString("detail"))
+                            detailDirector.setText(documentSnapshot.getString("director"))
+                            detailRating.setText(documentSnapshot.getString("rate"))
+                            Glide.with(this@DetailFragment)
+                                .load(documentSnapshot.getString("image"))
+                                .into(moviePicture)
+                        }
+                    }
+            }
+
+            favoritButton.setOnClickListener{
+                val newFavorit = Favorites(user_id = userId, movie_id = movieId)
+                addFavorit(newFavorit)
+            }
+        }
+
+    }
+
+    private fun addFavorit(favorit: Favorites){
+        FavoritesCollectionRef.add(favorit)
+            .addOnSuccessListener { docRef ->
+                val createFavoritId = docRef.id
+                favorit.id = createFavoritId
+                docRef.set(favorit)
+                    .addOnFailureListener{
+                        Log.d("RegisterActivity", "Error Updating User: ", it)
+                    }
+                Toast.makeText(requireContext(), "Berhasil Menambahkan ke Favorit", Toast.LENGTH_SHORT).show()
+            }
+            . addOnFailureListener{
+                Log.d("FormActivity", "Error adding budget ID: ", it)
             }
     }
+
 }

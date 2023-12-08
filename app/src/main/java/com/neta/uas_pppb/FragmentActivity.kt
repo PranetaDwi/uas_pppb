@@ -13,8 +13,15 @@ class FragmentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFragmentBinding.inflate(layoutInflater)
         setContentView(binding.root)
+//        val bundle = Bundle()
 
         replaceFragment(ListFragment())
+
+//        val userId = intent.getStringExtra(MainActivity.USER_ID)
+//
+//        val profileFragment = ProfileFragment()
+//        bundle.putString("userId", userId)
+//        profileFragment.arguments = bundle
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
