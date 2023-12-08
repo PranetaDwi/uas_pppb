@@ -19,6 +19,15 @@ class ListmovieFragment : Fragment() {
     private lateinit var prefManager: PrefManager
     private lateinit var movieadminAdapter: MovieadminAdapter
 
+    companion object {
+        const val MOVIE_ID = "movie_id"
+        const val MOVIE_TITLE = "movie_title"
+        const val MOVIE_IMAGE = "movie_image"
+        const val MOVIE_DETAIL = "movie_detail"
+        const val MOVIE_DIRECTOR = "movie_director"
+        const val MOVIE_RATE = "movie_rate"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +42,18 @@ class ListmovieFragment : Fragment() {
         prefManager = PrefManager.getInstance(requireContext())
 
         movieadminAdapter = MovieadminAdapter(requireContext(), ArrayList())
+
+        movieadminAdapter.setOnItemClickListener { selectedMovie ->
+            val intentToDetailmovieActivity = Intent(requireContext(), DetailmovieActivity::class.java)
+            intentToDetailmovieActivity.putExtra(MOVIE_ID, selectedMovie.id)
+            intentToDetailmovieActivity.putExtra(MOVIE_TITLE, selectedMovie.title)
+            intentToDetailmovieActivity.putExtra(MOVIE_IMAGE, selectedMovie.image)
+            intentToDetailmovieActivity.putExtra(MOVIE_DETAIL, selectedMovie.detail)
+            intentToDetailmovieActivity.putExtra(MOVIE_DIRECTOR, selectedMovie.director)
+            intentToDetailmovieActivity.putExtra(MOVIE_RATE, selectedMovie.rate)
+            startActivity(intentToDetailmovieActivity)
+        }
+
         with(binding){
             logoutButton.setOnClickListener{
                 prefManager.setLoggedIn(false)

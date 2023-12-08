@@ -38,7 +38,6 @@ class AddmovieFragment : Fragment() {
 
         with(binding) {
 
-
             imageButton.setOnClickListener {
                 val iImg = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(iImg, 0)
@@ -56,9 +55,9 @@ class AddmovieFragment : Fragment() {
                             val imageFile = it.toString()
                             val newMovie = Movies(title = title, detail = detail, director = director, rate = rate, image = imageFile)
                             addMovie(newMovie)
+                            startActivity(Intent(requireContext(), AdminActivity::class.java))
                         }
                     }
-                startActivity(Intent(requireContext(), ListmovieFragment::class.java))
 
             }
 

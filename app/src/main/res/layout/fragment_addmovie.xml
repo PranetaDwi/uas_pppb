@@ -132,9 +132,6 @@
                 android:fontFamily="@font/montserrat_extrabold"
                 android:textSize="20dp"/>
 
-
-
-
         </LinearLayout>
 
     </ScrollView>

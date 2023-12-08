@@ -8,95 +8,136 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Edit Movie List"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/pink_purple"
-        android:textSize="25sp"
-        android:fontFamily="@font/montserrat_extrabold"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <View
-        android:layout_width="350dp"
-        android:layout_height="5dp"
-        android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/bg_color"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/titleInput"
-        android:layout_width="340dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/input"
-        android:hint="Title"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingLeft="20dp"
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Update Movie List"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/pink_purple"
+                android:textSize="25sp"
+                android:fontFamily="@font/montserrat_extrabold"/>
 
-    <EditText
-        android:id="@+id/detailInput"
-        android:layout_width="340dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input"
-        android:hint="Detail"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingLeft="20dp"
-        />
+            <View
+                android:layout_width="350dp"
+                android:layout_height="5dp"
+                android:background="@color/white"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="25dp"
+                />
 
-    <EditText
-        android:id="@+id/directorInput"
-        android:layout_width="340dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input"
-        android:hint="Director"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingLeft="20dp"
-        />
+            <EditText
+                android:id="@+id/titleInput"
+                android:layout_width="340dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/input"
+                android:hint="Title"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                />
 
-    <EditText
-        android:id="@+id/rateInput"
-        android:layout_width="340dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/input"
-        android:hint="Rate"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:paddingLeft="20dp"
-        />
+            <EditText
+                android:id="@+id/detailInput"
+                android:layout_width="340dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:hint="Detail"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addButton"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:background="@drawable/button"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center_horizontal"
-        android:text="Update"
-        android:textColor="@color/white"
-        android:fontFamily="@font/montserrat_extrabold"
-        android:textSize="20dp"/>
+            <EditText
+                android:id="@+id/directorInput"
+                android:layout_width="340dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:hint="Director"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                />
+
+            <EditText
+                android:id="@+id/rateInput"
+                android:layout_width="340dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/input"
+                android:hint="Rate"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingLeft="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Image"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/imageButton"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:background="@color/light_blue"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="Choose File"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/updateButton"
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:background="@drawable/button"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center_horizontal"
+                android:text="Update"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_extrabold"
+                android:textSize="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 
 </LinearLayout>

@@ -11,8 +11,8 @@ class TabAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm,
 
     override fun getItem(position: Int): Fragment {
         return when (position){
-            0 -> AddmovieFragment()
-            1 -> ListmovieFragment()
+            0 -> ListmovieFragment()
+            1 -> AddmovieFragment()
             else -> throw IllegalAccessException("Invalid Tab Positon")
         }
     }
@@ -23,8 +23,8 @@ class TabAdapter (fm: FragmentManager) : FragmentPagerAdapter(fm,
 
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
-            0 -> "Add"
-            1 -> "Your List"
+            0 -> "Your List"
+            1 -> "Add Movie"
             else -> null
         }
     }

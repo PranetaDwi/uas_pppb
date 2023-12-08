@@ -9,6 +9,12 @@ import com.neta.uas_pppb.databinding.ItemAdminmovieBinding
 
 class MovieadminAdapter(private val context: Context, private var listMovie: MutableList<Movies>): RecyclerView.Adapter<MovieadminAdapter.ItemAdminmovieViewHolder>() {
 
+    private var onItemClickListener: ((Movies) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (Movies) -> Unit){
+        onItemClickListener = listener
+    }
+
     inner class ItemAdminmovieViewHolder(private val binding: ItemAdminmovieBinding):
             RecyclerView.ViewHolder(binding.root){
 
@@ -19,6 +25,9 @@ class MovieadminAdapter(private val context: Context, private var listMovie: Mut
                         txtDetail.text = data.detail
                         txtDirector.text = data.director
                         txtRating.text = data.rate
+                        itemView.setOnClickListener {
+                            onItemClickListener?.invoke(data)
+                        }
                     }
                 }
             }
