@@ -1,8 +1,13 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.admin
 
 import android.app.Activity
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -10,9 +15,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.neta.uas_pppb.R
+import com.neta.uas_pppb.database.MoviesDao
+import com.neta.uas_pppb.database.MoviesRoomDatabase
+import com.neta.uas_pppb.database.Moviesdb
+import com.neta.uas_pppb.firebase.Movies
 import com.neta.uas_pppb.databinding.FragmentAddmovieBinding
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 
 class AddmovieFragment : Fragment() {
@@ -23,6 +37,9 @@ class AddmovieFragment : Fragment() {
     private var _binding: FragmentAddmovieBinding? = null
     private val binding get() = _binding!!
     private var imgPath: Uri? = null
+    private lateinit var mMoviesDao: MoviesDao
+    private lateinit var executorService: ExecutorService
+    private val channelId = "TEST_NOTIFICATION"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +51,10 @@ class AddmovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        executorService = Executors.newSingleThreadExecutor()
+        val db = MoviesRoomDatabase.getDatabase(requireContext())
+        mMoviesDao = db!!.moviesDao()!!
 
         with(binding) {
 
@@ -68,6 +89,10 @@ class AddmovieFragment : Fragment() {
         if (resultCode == Activity.RESULT_OK) {
             imgPath = data?.data
         }
+
+        Glide.with(this)
+            .load(imgPath)
+            .into(binding.picturePreview)
     }
 
     private fun addMovie(movie: Movies){
@@ -80,6 +105,51 @@ class AddmovieFragment : Fragment() {
                         Log.d("RegisterActivity", "Error Updating User: ", it)
                     }
 
+                // insert to ROOM
+                executorService.execute{
+                    mMoviesDao.insert(
+                        Moviesdb(
+                            id = createMovieId,
+                            title = movie.title,
+                            detail = movie.detail,
+                            director = movie.director,
+                            rate = movie.rate,
+
+                            image = imgPath.toString()
+                        )
+                    )
+                }
+
+                val notification = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+                val notifImage = BitmapFactory.decodeResource(
+                    resources, R.drawable.newnotif)
+
+                val builder = NotificationCompat.Builder(requireContext(), channelId)
+                    .setSmallIcon(R.drawable.bellring)
+                    .setContentTitle("New Movie Added")
+                    .setContentText("New movie has been added to the list")
+                    .setStyle(
+                        NotificationCompat.BigPictureStyle()
+                            .bigPicture(notifImage)
+                    )
+                    .setAutoCancel(true)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    val notifChannel = NotificationChannel(
+                        channelId,
+                        "Notifku",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+                    with(notification) {
+                        createNotificationChannel(notifChannel)
+                        notify(0, builder.build())
+                    }
+                }
+                else {
+                    notification.notify(0, builder.build())
+                }
                 resetForm()
             }
             . addOnFailureListener{

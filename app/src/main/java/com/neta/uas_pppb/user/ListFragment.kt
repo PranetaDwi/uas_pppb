@@ -1,6 +1,5 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.user
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.neta.uas_pppb.adapter.MovieUserAdapter
+import com.neta.uas_pppb.firebase.Movies
+import com.neta.uas_pppb.PrefManager
+import com.neta.uas_pppb.R
 import com.neta.uas_pppb.databinding.FragmentListBinding
 
 class ListFragment : Fragment() {

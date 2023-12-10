@@ -1,4 +1,4 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.auth.User
+import com.neta.uas_pppb.user.FragmentActivity
+import com.neta.uas_pppb.PrefManager
+import com.neta.uas_pppb.firebase.Users
 import com.neta.uas_pppb.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {

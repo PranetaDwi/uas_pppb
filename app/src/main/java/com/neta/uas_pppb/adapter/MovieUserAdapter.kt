@@ -1,12 +1,12 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.neta.uas_pppb.databinding.ItemAdminmovieBinding
 import com.neta.uas_pppb.databinding.ItemHomemovieBinding
+import com.neta.uas_pppb.firebase.Movies
 
 class MovieUserAdapter(private val context: Context, private var listMovie: MutableList<Movies>): RecyclerView.Adapter<MovieUserAdapter.ItemUserMovieViewHolder>() {
 

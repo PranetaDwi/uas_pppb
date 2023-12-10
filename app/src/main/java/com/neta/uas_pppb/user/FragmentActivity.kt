@@ -1,8 +1,9 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.user
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.neta.uas_pppb.R
 import com.neta.uas_pppb.databinding.ActivityFragmentBinding
 
 class FragmentActivity : AppCompatActivity() {

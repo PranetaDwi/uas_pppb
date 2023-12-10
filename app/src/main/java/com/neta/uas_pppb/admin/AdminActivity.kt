@@ -1,10 +1,9 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.admin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
+import com.neta.uas_pppb.adapter.TabAdapter
 import com.neta.uas_pppb.databinding.ActivityAdminBinding
-import com.neta.uas_pppb.databinding.ActivityFragmentBinding
 
 class AdminActivity : AppCompatActivity() {
 

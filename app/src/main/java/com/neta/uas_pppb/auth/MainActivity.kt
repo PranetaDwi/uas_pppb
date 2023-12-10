@@ -1,10 +1,13 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.google.firebase.firestore.FirebaseFirestore
+import com.neta.uas_pppb.admin.AdminActivity
+import com.neta.uas_pppb.user.FragmentActivity
+import com.neta.uas_pppb.PrefManager
 import com.neta.uas_pppb.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

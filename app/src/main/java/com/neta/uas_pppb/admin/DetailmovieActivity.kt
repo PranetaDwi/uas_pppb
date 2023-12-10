@@ -1,4 +1,4 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.admin
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,9 @@ import android.util.Log
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.neta.uas_pppb.database.MoviesDao
 import com.neta.uas_pppb.databinding.ActivityDetailmovieBinding
+import java.util.concurrent.ExecutorService
 
 class DetailmovieActivity : AppCompatActivity() {
 
@@ -19,6 +21,8 @@ class DetailmovieActivity : AppCompatActivity() {
     private val firestore = FirebaseFirestore.getInstance()
     private val MoviesCollectionRef = firestore.collection("movies")
     private lateinit var binding: ActivityDetailmovieBinding
+    private lateinit var mMoviesDao: MoviesDao
+    private lateinit var executorService: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetailmovieBinding.inflate(layoutInflater)
@@ -39,7 +43,7 @@ class DetailmovieActivity : AppCompatActivity() {
 
             deleteButton.setOnClickListener{
                 deleteMovie(movieId, urlImage)
-                startActivity(Intent(this@DetailmovieActivity, AdminActivity::class.java))
+
             }
 
             editButton.setOnClickListener{
@@ -47,6 +51,13 @@ class DetailmovieActivity : AppCompatActivity() {
                 intentToEditmovieActivity.putExtra(MOVIE_ID, movieId)
                 intentToEditmovieActivity.putExtra(MOVIE_IMAGE, urlImage)
                 startActivity(intentToEditmovieActivity)
+            }
+
+            cobadelete.setOnClickListener{
+                val selectedMovie = mMoviesDao.getMoviesById("sVWHOPJAxOPH7YXll5LK")
+                executorService.execute{
+                    mMoviesDao.delete(selectedMovie)
+                }
             }
         }
     }
@@ -61,12 +72,18 @@ class DetailmovieActivity : AppCompatActivity() {
             .addOnFailureListener{
                 Log.d("DetailActivity", "Error deleting budget: ", it)
             }
+            .addOnSuccessListener {
+                Log.d("DetailActivity", "Budget successfully deleted!")
 
-        val imageStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(UrlImage)
 
-        imageStorageRef.delete()
-            .addOnFailureListener{
-                Log.d("DetailActivity", "Error deleting budget: ", it)
-            }
+            val imageStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(UrlImage)
+
+            imageStorageRef.delete()
+                .addOnFailureListener{
+                    Log.d("DetailActivity", "Error deleting budget: ", it)
+                }
+
+                startActivity(Intent(this@DetailmovieActivity, AdminActivity::class.java))
+        }
     }
 }

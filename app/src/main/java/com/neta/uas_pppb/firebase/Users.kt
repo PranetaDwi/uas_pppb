@@ -1,4 +1,4 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.firebase
 
 data class Users(
     var id: String = "",

@@ -1,6 +1,5 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.user
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,8 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import com.neta.uas_pppb.databinding.FragmentAddmovieBinding
+import com.neta.uas_pppb.firebase.Favorites
+import com.neta.uas_pppb.PrefManager
 import com.neta.uas_pppb.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {

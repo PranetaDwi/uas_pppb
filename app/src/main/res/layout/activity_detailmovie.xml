@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailmovieActivity"
+    tools:context=".admin.DetailmovieActivity"
     android:background="@color/bg_color"
     android:orientation="vertical">
 
@@ -122,7 +122,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
@@ -140,5 +140,17 @@
             android:background="@drawable/edit_button"
             android:layout_marginLeft="60dp"/>
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/cobadelete"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button"
+        android:layout_gravity="center"
+        android:text="apus"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        />
 
 </LinearLayout>

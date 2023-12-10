@@ -13,21 +13,21 @@
         android:theme="@style/Theme.Uas_pppb"
         tools:targetApi="31">
         <activity
-            android:name=".AdminActivity"
+            android:name=".admin.AdminActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".DetailmovieActivity"
+            android:name=".admin.DetailmovieActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditmovieActivity"
+            android:name=".admin.EditmovieActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -48,21 +48,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FragmentActivity"
+            android:name=".user.FragmentActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".auth.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".auth.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

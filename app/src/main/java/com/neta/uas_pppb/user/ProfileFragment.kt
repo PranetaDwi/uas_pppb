@@ -1,4 +1,4 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.user
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.firestore.FirebaseFirestore
+import com.neta.uas_pppb.auth.MainActivity
+import com.neta.uas_pppb.PrefManager
 import com.neta.uas_pppb.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

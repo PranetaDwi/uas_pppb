@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailFragment">
+    tools:context=".user.DetailFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,6 @@
             android:src="@drawable/movie1"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="40dp"/>
-
 
         <TextView
             android:id="@+id/detailTitle"
@@ -117,6 +116,8 @@
             android:textColor="@color/white"
             android:fontFamily="@font/montserrat_bold"
             />
+
+
 
     </LinearLayout>
 </FrameLayout>

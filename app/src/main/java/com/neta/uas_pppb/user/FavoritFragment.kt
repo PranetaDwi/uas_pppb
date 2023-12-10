@@ -1,4 +1,4 @@
-package com.neta.uas_pppb
+package com.neta.uas_pppb.user
 
 import android.os.Bundle
 import android.util.Log
@@ -8,8 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.neta.uas_pppb.firebase.Favorites
+import com.neta.uas_pppb.adapter.FavoritesAdapter
+import com.neta.uas_pppb.firebase.Movies
+import com.neta.uas_pppb.PrefManager
 import com.neta.uas_pppb.databinding.FragmentFavoritBinding
-import com.neta.uas_pppb.databinding.FragmentProfileBinding
 
 class FavoritFragment : Fragment() {
 
@@ -25,8 +28,6 @@ class FavoritFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         _binding = FragmentFavoritBinding.inflate(inflater, container, false)
         return binding.root
     }

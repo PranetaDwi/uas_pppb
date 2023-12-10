@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditmovieActivity"
+    tools:context=".admin.EditmovieActivity"
     android:background="@color/bg_color"
     android:orientation="vertical">
 
@@ -120,8 +120,14 @@
                 android:text="Choose File"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-
                 />
+
+            <ImageView
+                android:id="@+id/picturePreview"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/updateButton"
