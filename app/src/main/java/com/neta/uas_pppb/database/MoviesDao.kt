@@ -18,8 +18,17 @@ interface MoviesDao {
     val allMovies: LiveData<List<Moviesdb>>
 
     @Query("SELECT * FROM movies_table WHERE id = :moviesId")
-    fun getMoviesById(moviesId: String): Moviesdb
+    fun getMoviesById(moviesId: String): LiveData<Moviesdb>
 
-    @Query("SELECT image FROM movies_table WHERE id = :moviesId")
-    fun getImageMovieById(moviesId: String): String?
+    @Query("SELECT * FROM movies_table WHERE id = :moviesId")
+    fun getImageMovieById(moviesId: String): Moviesdb
+
+    @Query("DELETE FROM movies_table WHERE id = :movieId")
+    fun deleteById(movieId: String)
+
+    @Query("UPDATE movies_table SET title = :title, detail = :detail, director = :director, rate = :rate, image = :image WHERE id = :movieid")
+    fun updateById(title: String, detail: String, director: String, rate: String, image: String, movieid: String)
+
+    @Query("UPDATE movies_table SET title = :title, detail = :detail, director = :director, rate = :rate WHERE id = :movieid")
+    fun updateByIdNoImage(title: String, detail: String, director: String, rate: String, movieid: String)
 }

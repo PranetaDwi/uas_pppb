@@ -141,16 +141,5 @@
             android:layout_marginLeft="60dp"/>
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/cobadelete"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:background="@drawable/button"
-        android:layout_gravity="center"
-        android:text="apus"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/montserrat_bold"
-        />
 
 </LinearLayout>

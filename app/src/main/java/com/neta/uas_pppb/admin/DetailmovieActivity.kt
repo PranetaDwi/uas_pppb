@@ -8,8 +8,10 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.neta.uas_pppb.database.MoviesDao
+import com.neta.uas_pppb.database.MoviesRoomDatabase
 import com.neta.uas_pppb.databinding.ActivityDetailmovieBinding
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class DetailmovieActivity : AppCompatActivity() {
 
@@ -28,6 +30,10 @@ class DetailmovieActivity : AppCompatActivity() {
         binding = ActivityDetailmovieBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        executorService = Executors.newSingleThreadExecutor()
+        val db = MoviesRoomDatabase.getDatabase(this)
+        mMoviesDao = db!!.moviesDao()!!
 
         with(binding){
             val movieId = intent.getStringExtra(ListmovieFragment.MOVIE_ID).toString()
@@ -53,12 +59,6 @@ class DetailmovieActivity : AppCompatActivity() {
                 startActivity(intentToEditmovieActivity)
             }
 
-            cobadelete.setOnClickListener{
-                val selectedMovie = mMoviesDao.getMoviesById("sVWHOPJAxOPH7YXll5LK")
-                executorService.execute{
-                    mMoviesDao.delete(selectedMovie)
-                }
-            }
         }
     }
 
@@ -73,6 +73,9 @@ class DetailmovieActivity : AppCompatActivity() {
                 Log.d("DetailActivity", "Error deleting budget: ", it)
             }
             .addOnSuccessListener {
+                executorService.execute{
+                    mMoviesDao.deleteById(MovieId)
+                }
                 Log.d("DetailActivity", "Budget successfully deleted!")
 
 

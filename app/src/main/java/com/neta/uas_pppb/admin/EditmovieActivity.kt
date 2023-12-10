@@ -32,9 +32,8 @@ class EditmovieActivity : AppCompatActivity() {
     private val MoviesCollectionRef = firestore.collection("movies")
     private val ImageStorageRef = FirebaseStorage.getInstance().getReference("images")
     private var imgPath: Uri? = null
-    private var fileimage: String = ""
     private lateinit var mMoviesDao: MoviesDao
-    private lateinit var executorService: ExecutorService
+    private var executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private val channelId = "TEST_NOTIFICATION"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +41,6 @@ class EditmovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        executorService = Executors.newSingleThreadExecutor()
         val db = MoviesRoomDatabase.getDatabase(this)
         mMoviesDao = db!!.moviesDao()!!
 
@@ -74,10 +72,10 @@ class EditmovieActivity : AppCompatActivity() {
             }
 
             updateButton.setOnClickListener {
-                val title = titleInput.text.toString()
-                val detail = detailInput.text.toString()
-                val director = directorInput.text.toString()
-                val rate = rateInput.text.toString()
+                val titleInput = titleInput.text.toString()
+                val detailInput = detailInput.text.toString()
+                val directorInput = directorInput.text.toString()
+                val rateInput = rateInput.text.toString()
 
                 if (imgPath != null) {
                     ImageStorageRef.putFile(imgPath!!)
@@ -86,17 +84,24 @@ class EditmovieActivity : AppCompatActivity() {
                                 val imageFile = it.toString()
                                 val editMovie = Movies(
                                     id = movieId,
-                                    title = title,
-                                    detail = detail,
-                                    director = director,
-                                    rate = rate,
+                                    title = titleInput,
+                                    detail = detailInput,
+                                    director = directorInput,
+                                    rate = rateInput,
                                     image = imageFile
                                 )
+                                executorService.execute {
+                                    mMoviesDao.updateById(titleInput, detailInput, directorInput, rateInput, imgPath.toString(), movieId)
+                                }
                                 updateMovie(movieId, editMovie)
+
                             }
                         }
                 } else {
-                    val editMovie = Movies(id = movieId, title = title, detail = detail, director = director, rate = rate, image = urlImage)
+                    val editMovie = Movies(id = movieId, title = titleInput, detail = detailInput, director = directorInput, rate = rateInput, image = urlImage)
+                    executorService.execute {
+                        mMoviesDao.updateByIdNoImage(titleInput, detailInput, directorInput, rateInput, movieId)
+                    }
                     updateMovie(movieId, editMovie)
                 }
 
@@ -128,7 +133,6 @@ class EditmovieActivity : AppCompatActivity() {
                 else {
                     notification.notify(0, builder.build())
                 }
-
                 setEmptyField()
 
             }
@@ -155,27 +159,8 @@ class EditmovieActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 Log.d("UpdateActivity", "Movie successfully updated!")
 
-//                val existingMovie = mMoviesDao.getImageMovieById(movieId)
-//                if (imgPath == null) {
-//                    fileimage = existingMovie.toString()
-//                } else {
-//                    fileimage = imgPath.toString()
-//                }
-//
-//                executorService.execute{
-//                    mMoviesDao.update(
-//                        Moviesdb(
-//                            id = movieId,
-//                            title = binding.titleInput.text.toString(),
-//                            detail = binding.detailInput.toString(),
-//                            director = binding.directorInput.toString(),
-//                            rate = binding.rateInput.toString(),
-//                            image = fileimage
-//                        )
-//                    )
-//                }
-                startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
 
+                startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
 
             }
     }
