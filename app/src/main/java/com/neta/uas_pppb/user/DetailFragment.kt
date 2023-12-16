@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.neta.uas_pppb.firebase.Favorites
 import com.neta.uas_pppb.PrefManager
+import com.neta.uas_pppb.R
 import com.neta.uas_pppb.databinding.FragmentDetailBinding
 
 class DetailFragment : Fragment() {
@@ -35,27 +36,26 @@ class DetailFragment : Fragment() {
 
         val movieId = arguments?.getString("movieId").toString()
         prefManager = PrefManager.getInstance(requireContext())
-
         val userId = prefManager.getUserId()
 
         with(binding){
-            if (!movieId.isNullOrBlank()) {
-                val movieDocumentRef = MoviesCollectionRef.document(movieId)
-                movieDocumentRef.get()
-                    .addOnSuccessListener { documentSnapshot ->
-                        if (documentSnapshot.exists()) {
-                            detailTitle.setText(documentSnapshot.getString("title"))
-                            detailDescription.setText(documentSnapshot.getString("detail"))
-                            detailDirector.setText(documentSnapshot.getString("director"))
-                            detailRating.setText(documentSnapshot.getString("rate"))
-                            Glide.with(this@DetailFragment)
-                                .load(documentSnapshot.getString("image"))
-                                .into(moviePicture)
-                        }
-                    }
+
+            val image = arguments?.getString("image")
+            detailTitle.setText(arguments?.getString("titles"))
+            detailDescription.setText(arguments?.getString("detail"))
+            detailDirector.setText(arguments?.getString("director"))
+            detailRating.setText(arguments?.getString("rating"))
+            if (image == "null"){
+                Glide.with(this@DetailFragment)
+                .load(R.drawable.loading_buffering)
+                .into(moviePicture)
+            } else {
+                Glide.with(this@DetailFragment)
+                .load(image)
+                .into(moviePicture)
             }
 
-            favoritButton.setOnClickListener{
+            favoritButton.setOnClickListener {
                 val newFavorit = Favorites(user_id = userId, movie_id = movieId)
                 addFavorit(newFavorit)
             }

@@ -9,7 +9,6 @@ android:orientation="vertical">
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
@@ -18,14 +17,18 @@ android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/txtImage"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/movie1"
-            android:scaleType="fitXY"
+            android:layout_width="120dp"
+            android:layout_height="150dp"
             android:layout_centerVertical="true"
-            android:layout_margin="10dp"/>
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/movie1" />
 
         <TextView
             android:id="@+id/txtTitle"
@@ -34,7 +37,6 @@ android:orientation="vertical">
             android:layout_toRightOf="@+id/txtImage"
             android:text="Inception"
             android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textSize="20sp"
@@ -49,9 +51,9 @@ android:orientation="vertical">
             android:layout_below="@+id/txtTitle"
             android:text="Inception adalah film fiksi ilmiah tahun 2010 yang disutradarai oleh Christopher Nolan dan diproduseri oleh Christopher Nolan dan Emma Thomas. Naskah film ini ditulis oleh Christopher Nolan"
             android:textColor="@color/white"
-            android:layout_marginLeft="10dp"
             android:textStyle="bold"
             android:textSize="12sp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_light"
             />
 
@@ -61,14 +63,15 @@ android:orientation="vertical">
             android:layout_toRightOf="@+id/txtImage"
             android:layout_below="@+id/txtDetail"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/ratedirector">
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/star"/>
+                android:src="@drawable/star"
+                android:layout_gravity="center_vertical"/>
 
             <TextView
                 android:id="@+id/txtRating"
@@ -97,8 +100,31 @@ android:orientation="vertical">
                 android:fontFamily="@font/montserrat_bold"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center_vertical"/>
-
         </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_below="@id/ratedirector"-->
+<!--            android:layout_toRightOf="@id/txtImage"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_marginLeft="140dp">-->
+
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/deleteButton"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:background="@drawable/trash"/>-->
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/editButton"-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:background="@drawable/edit"-->
+<!--                android:layout_marginLeft="20dp"/>-->
+
+
+<!--        </LinearLayout>-->
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -35,7 +35,8 @@
             android:layout_height="200dp"
             android:src="@drawable/movie1"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginTop="40dp"
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/detailTitle"
@@ -71,7 +72,8 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/star"/>
+                android:src="@drawable/star"
+                />
 
             <TextView
                 android:id="@+id/detailRating"
@@ -106,7 +108,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/favoritButton"
-            android:layout_width="250dp"
+            android:layout_width="150dp"
             android:layout_height="50dp"
             android:background="@drawable/button"
             android:layout_gravity="center"

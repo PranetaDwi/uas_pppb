@@ -11,7 +11,7 @@
         android:layout_width="350dp"
         android:layout_height="370dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="250dp"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/dark_blue">
         <LinearLayout
@@ -29,21 +29,25 @@
                 android:layout_marginBottom="20dp"
                 />
 
-            <EditText
-                android:id="@+id/usernameInput"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/input"
                 android:hint="Username"
                 android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingLeft="20dp"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/input"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                />
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,7 +55,9 @@
                 android:layout_marginTop="20dp"
                 app:endIconMode="password_toggle"
                 android:hint="Password"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue">
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/passwordInput"
                         android:layout_width="300dp"
@@ -59,7 +65,7 @@
                         android:background="@drawable/input"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:paddingLeft="20dp"/>
+                        android:paddingLeft="20dp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -82,7 +88,7 @@
         android:layout_height="70dp"
         android:background="@drawable/button"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="580dp"
         android:layout_centerHorizontal="true"
         android:text="LOGIN"
         android:fontFamily="@font/montserrat_bold"

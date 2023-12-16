@@ -32,8 +32,6 @@ class EditmovieActivity : AppCompatActivity() {
     private val MoviesCollectionRef = firestore.collection("movies")
     private val ImageStorageRef = FirebaseStorage.getInstance().getReference("images")
     private var imgPath: Uri? = null
-    private lateinit var mMoviesDao: MoviesDao
-    private var executorService: ExecutorService = Executors.newSingleThreadExecutor()
     private val channelId = "TEST_NOTIFICATION"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +39,6 @@ class EditmovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val db = MoviesRoomDatabase.getDatabase(this)
-        mMoviesDao = db!!.moviesDao()!!
 
         val notification = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -90,18 +86,12 @@ class EditmovieActivity : AppCompatActivity() {
                                     rate = rateInput,
                                     image = imageFile
                                 )
-                                executorService.execute {
-                                    mMoviesDao.updateById(titleInput, detailInput, directorInput, rateInput, imgPath.toString(), movieId)
-                                }
                                 updateMovie(movieId, editMovie)
 
                             }
                         }
                 } else {
                     val editMovie = Movies(id = movieId, title = titleInput, detail = detailInput, director = directorInput, rate = rateInput, image = urlImage)
-                    executorService.execute {
-                        mMoviesDao.updateByIdNoImage(titleInput, detailInput, directorInput, rateInput, movieId)
-                    }
                     updateMovie(movieId, editMovie)
                 }
 

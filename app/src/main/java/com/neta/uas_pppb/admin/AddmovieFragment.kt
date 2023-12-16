@@ -37,8 +37,6 @@ class AddmovieFragment : Fragment() {
     private var _binding: FragmentAddmovieBinding? = null
     private val binding get() = _binding!!
     private var imgPath: Uri? = null
-    private lateinit var mMoviesDao: MoviesDao
-    private lateinit var executorService: ExecutorService
     private val channelId = "TEST_NOTIFICATION"
 
     override fun onCreateView(
@@ -51,10 +49,6 @@ class AddmovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        executorService = Executors.newSingleThreadExecutor()
-        val db = MoviesRoomDatabase.getDatabase(requireContext())
-        mMoviesDao = db!!.moviesDao()!!
 
         with(binding) {
 
@@ -104,21 +98,6 @@ class AddmovieFragment : Fragment() {
                     .addOnFailureListener{
                         Log.d("RegisterActivity", "Error Updating User: ", it)
                     }
-
-                // insert to ROOM
-                executorService.execute{
-                    mMoviesDao.insert(
-                        Moviesdb(
-                            id = createMovieId,
-                            title = movie.title,
-                            detail = movie.detail,
-                            director = movie.director,
-                            rate = movie.rate,
-
-                            image = imgPath.toString()
-                        )
-                    )
-                }
 
                 val notification = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 

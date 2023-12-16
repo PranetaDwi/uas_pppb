@@ -59,12 +59,6 @@ class ListmovieFragment : Fragment() {
         }
 
         with(binding){
-            logoutButton.setOnClickListener{
-                prefManager.setLoggedIn(false)
-                prefManager.clear()
-                startActivity(Intent(requireContext(), MainActivity::class.java))
-                requireActivity().finish()
-            }
 
             rvMovieAdmin.layoutManager = GridLayoutManager(requireContext(), 1)
             rvMovieAdmin.adapter = movieadminAdapter

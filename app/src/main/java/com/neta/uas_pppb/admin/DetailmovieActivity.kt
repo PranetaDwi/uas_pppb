@@ -23,17 +23,11 @@ class DetailmovieActivity : AppCompatActivity() {
     private val firestore = FirebaseFirestore.getInstance()
     private val MoviesCollectionRef = firestore.collection("movies")
     private lateinit var binding: ActivityDetailmovieBinding
-    private lateinit var mMoviesDao: MoviesDao
-    private lateinit var executorService: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityDetailmovieBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        executorService = Executors.newSingleThreadExecutor()
-        val db = MoviesRoomDatabase.getDatabase(this)
-        mMoviesDao = db!!.moviesDao()!!
 
         with(binding){
             val movieId = intent.getStringExtra(ListmovieFragment.MOVIE_ID).toString()
@@ -73,11 +67,7 @@ class DetailmovieActivity : AppCompatActivity() {
                 Log.d("DetailActivity", "Error deleting budget: ", it)
             }
             .addOnSuccessListener {
-                executorService.execute{
-                    mMoviesDao.deleteById(MovieId)
-                }
                 Log.d("DetailActivity", "Budget successfully deleted!")
-
 
             val imageStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(UrlImage)
 

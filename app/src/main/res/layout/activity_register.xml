@@ -9,15 +9,16 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="350dp"
-        android:layout_height="430dp"
+        android:layout_height="470dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="165dp"
+        android:layout_marginTop="250dp"
         android:layout_centerHorizontal="true"
         android:backgroundTint="@color/dark_blue">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -28,48 +29,64 @@
                 android:layout_gravity="center"
                 />
 
-            <EditText
-                android:id="@+id/usernameInput"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/input"
+                android:layout_marginTop="20dp"
                 android:hint="Username"
                 android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingLeft="20dp"/>
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameInput"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/input"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/emailInput"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/input"
+                android:layout_marginTop="20dp"
                 android:hint="Email"
                 android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingLeft="20dp"/>
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/input"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/phoneInput"
-                android:layout_width="300dp"
-                android:layout_height="70dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/input"
+                android:layout_marginTop="20dp"
                 android:hint="Phone"
                 android:textColorHint="@color/white"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:paddingLeft="20dp"
-                />
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneInput"
+                    android:layout_width="300dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/input"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:paddingLeft="20dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="wrap_content"
@@ -78,7 +95,10 @@
                 android:layout_marginTop="10dp"
                 app:endIconMode="password_toggle"
                 android:hint="Password"
-                android:textColorHint="@color/white">
+                android:textColorHint="@color/white"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="@color/dark_blue"
+                android:layout_marginBottom="20dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/passwordInput"
@@ -98,7 +118,7 @@
         android:layout_height="70dp"
         android:background="@drawable/button"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="560dp"
+        android:layout_marginTop="700dp"
         android:layout_centerHorizontal="true"
         android:text="REGISTER"
         android:fontFamily="@font/montserrat_bold"
