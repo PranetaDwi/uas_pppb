@@ -8,25 +8,56 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/dark_blue"
+        android:background="@color/bg_color"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Movie List Admin"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/pink_purple"
-            android:textSize="25sp"
-            android:fontFamily="@font/montserrat_extrabold"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="370dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/grey"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_search"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:text="Search Movie.."
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textColor="@color/light_blue"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/icon_voice"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="120dp"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
 
         <View
-            android:layout_width="350dp"
-            android:layout_height="5dp"
-            android:background="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_width="200dp"
+            android:layout_height="2dp"
+            android:background="@color/grey"
             android:layout_marginTop="10dp"
+            android:layout_gravity="center_horizontal"
             />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -34,7 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="20dp"/>
-
 
     </LinearLayout>
 

@@ -3,51 +3,141 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".user.DetailFragment">
+
+
+    <ImageView
+        android:id="@+id/txtBigPicture"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/movie1"
+        android:alpha="0.6"
+        android:scaleType="fitXY"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="340dp"
+        android:layout_height="210dp"
+        android:backgroundTint="@color/dark2_blue"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/moviePicture"
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:src="@drawable/movie1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:scaleType="fitXY"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/detailTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inception"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/montserrat_extrabold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/star"
+                        />
+
+                    <TextView
+                        android:id="@+id/detailRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:text="4.5"
+                        android:textSize="15sp"
+                        android:textColor="@color/yellow"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/director_chair"
+                        />
+
+                    <TextView
+                        android:id="@+id/detailDirector"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:text="C. Nolan"
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/montserrat_mediumitalic"
+                        android:layout_marginLeft="5dp"
+                        android:layout_gravity="center_vertical"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/bg_color">
+        android:background="@color/bg_color"
+        android:layout_marginTop="300dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Detail Your Movie"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/pink_purple"
-            android:textSize="25sp"
-            android:fontFamily="@font/montserrat_extrabold"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="120dp"
+            app:cardCornerRadius="20dp"
+            android:backgroundTint="@color/grey"
+            android:layout_marginLeft="20dp">
 
-        <View
-            android:layout_width="350dp"
-            android:layout_height="5dp"
-            android:background="@color/white"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="25dp"
-            />
-
-        <ImageView
-            android:id="@+id/moviePicture"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/movie1"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="40dp"
-            android:scaleType="fitXY"/>
-
-        <TextView
-            android:id="@+id/detailTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inception"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center_horizontal"
-            android:textSize="23sp"
-            android:fontFamily="@font/montserrat_extrabold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="17dp"
+                android:textSize="14sp"
+                android:textColor="@color/light_blue"
+                android:fontFamily="@font/montserrat_bold"/>
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/detailDescription"
@@ -57,54 +147,8 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:textSize="18sp"
-            android:fontFamily="@font/montserrat_light"
-            android:textAlignment="center"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginBottom="10dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/star"
-                />
-
-            <TextView
-                android:id="@+id/detailRating"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:text="4.5"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center_vertical"/>
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/director_chair"
-                android:layout_marginLeft="80dp"
-                />
-
-            <TextView
-                android:id="@+id/detailDirector"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:text="C. Nolan"
-                android:textSize="20sp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/montserrat_bold"
-                android:layout_marginLeft="5dp"
-                android:layout_gravity="center_vertical"/>
-
-        </LinearLayout>
+            android:textSize="14sp"
+            android:fontFamily="@font/montserrat_light"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/favoritButton"

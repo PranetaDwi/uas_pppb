@@ -16,6 +16,8 @@ class FragmentActivity : AppCompatActivity() {
         setContentView(binding.root)
         replaceFragment(ListFragment())
 
+        supportActionBar?.hide()
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_list -> replaceFragment(ListFragment())

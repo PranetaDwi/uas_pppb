@@ -49,10 +49,16 @@ class DetailFragment : Fragment() {
                 Glide.with(this@DetailFragment)
                 .load(R.drawable.loading_buffering)
                 .into(moviePicture)
+                Glide.with(this@DetailFragment)
+                    .load(image)
+                    .into(txtBigPicture)
             } else {
                 Glide.with(this@DetailFragment)
                 .load(image)
                 .into(moviePicture)
+                Glide.with(this@DetailFragment)
+                    .load(image)
+                    .into(txtBigPicture)
             }
 
             favoritButton.setOnClickListener {

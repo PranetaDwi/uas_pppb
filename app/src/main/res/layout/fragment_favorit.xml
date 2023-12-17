@@ -12,21 +12,25 @@
         android:background="@color/bg_color"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your Favorits"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/pink_purple"
-            android:textSize="25sp"
-            android:fontFamily="@font/montserrat_extrabold"/>
+        <androidx.cardview.widget.CardView
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/grey">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your Favorits"
+                android:layout_gravity="center"
+                android:textColor="@color/light_blue"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_extrabold"/>
+        </androidx.cardview.widget.CardView>
+
 
         <View
             android:layout_width="350dp"
-            android:layout_height="5dp"
-            android:background="@color/white"
-            android:layout_marginLeft="20dp"
+            android:layout_height="3dp"
+            android:background="@color/grey"
             android:layout_marginTop="10dp"
             />
 

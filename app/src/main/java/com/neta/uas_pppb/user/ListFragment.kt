@@ -60,7 +60,7 @@ class ListFragment : Fragment() {
         MovieUserAdapter.setOnItemClickListener { selectedMovie ->
             val bundle = Bundle()
             bundle.putString("movieId", selectedMovie.id)
-            bundle.putString("title", selectedMovie.title)
+            bundle.putString("titles", selectedMovie.title)
             bundle.putString("detail", selectedMovie.detail)
             bundle.putString("director", selectedMovie.director)
             bundle.putString("rating", selectedMovie.rate)
@@ -77,7 +77,7 @@ class ListFragment : Fragment() {
         MovieUserOfflineAdapter.setOnItemClickListener { selectedMovie ->
             val bundle = Bundle()
             bundle.putString("movieId", selectedMovie.id)
-            bundle.putString("title", selectedMovie.title)
+            bundle.putString("titles", selectedMovie.title)
             bundle.putString("detail", selectedMovie.detail)
             bundle.putString("director", selectedMovie.director)
             bundle.putString("rating", selectedMovie.rate)

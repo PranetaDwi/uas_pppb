@@ -8,117 +8,163 @@
     android:background="@color/bg_color"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Detail Your Movie"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/pink_purple"
-        android:textSize="25sp"
-        android:fontFamily="@font/montserrat_extrabold"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/grey">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details Film"
+            android:layout_gravity="center"
+            android:textColor="@color/light_blue"
+            android:textSize="20sp"
+            android:fontFamily="@font/montserrat_extrabold"/>
+    </androidx.cardview.widget.CardView>
 
     <View
         android:layout_width="350dp"
-        android:layout_height="5dp"
-        android:background="@color/white"
+        android:layout_height="3dp"
+        android:background="@color/grey"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
         />
 
-    <ImageView
-        android:id="@+id/moviePicture"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/movie1"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="40dp"
-        android:scaleType="fitXY"/>
-
-
-    <TextView
-        android:id="@+id/detailTitle"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="370dp"
         android:layout_height="wrap_content"
-        android:text="Inception"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
         android:layout_gravity="center_horizontal"
-        android:textSize="23sp"
-        android:fontFamily="@font/montserrat_extrabold"/>
+        android:backgroundTint="@color/dark2_blue"
+        android:layout_marginTop="5dp"
+        app:cardElevation="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        >
 
-    <TextView
-        android:id="@+id/detailDescription"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:text="Inception adalah film fiksi ilmiah tahun 2010 yang disutradarai oleh Christopher Nolan dan diproduseri oleh Christopher Nolan dan Emma Thomas. Naskah film ini ditulis oleh Christopher Nolan"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:layout_gravity="center_horizontal"
-        android:textSize="18sp"
-        android:fontFamily="@font/montserrat_light"
-        android:textAlignment="center"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginBottom="10dp">
+            <ImageView
+                android:id="@+id/moviePicture"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/movie1"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:scaleType="fitXY"/>
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/star"/>
+            <TextView
+                android:id="@+id/detailTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inception"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="23sp"
+                android:fontFamily="@font/montserrat_extrabold"/>
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="@color/bg_color"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="12sp"
+                    android:textColor="@color/teal_200"
+                    android:fontFamily="@font/montserrat_bold"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/detailDescription"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:text="Inception adalah film fiksi ilmiah tahun 2010 yang disutradarai oleh Christopher Nolan dan diproduseri oleh Christopher Nolan dan Emma Thomas. Naskah film ini ditulis oleh Christopher Nolan"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_light"
+                android:textAlignment="center"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="17dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/star"/>
+
+                <TextView
+                    android:id="@+id/detailRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="4.5"
+                    android:textSize="17sp"
+                    android:textColor="@color/yellow"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="5dp"/>
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/director_chair"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:id="@+id/detailDirector"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:text="C. Nolan"
+                    android:textSize="17sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/montserrat_mediumitalic"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="15dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/grey"
+        android:layout_marginTop="20dp">
         <TextView
-            android:id="@+id/detailRating"
             android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="4.5"
+            android:layout_height="wrap_content"
+            android:text="Action"
+            android:layout_gravity="center"
+            android:textColor="@color/light_blue"
             android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"/>
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/director_chair"
-            android:layout_marginLeft="80dp"
-            />
-
-        <TextView
-            android:id="@+id/detailDirector"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="C. Nolan"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_marginLeft="5dp"
-            android:layout_gravity="center_vertical"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Action"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/pink_purple"
-        android:textSize="25sp"
-        android:fontFamily="@font/montserrat_extrabold"/>
+            android:fontFamily="@font/montserrat_extrabold"/>
+    </androidx.cardview.widget.CardView>
 
     <View
         android:layout_width="350dp"
-        android:layout_height="5dp"
-        android:background="@color/white"
+        android:layout_height="3dp"
+        android:background="@color/grey"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
         />
 
     <LinearLayout
@@ -128,18 +174,32 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="15dp">
 
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/trash"
+            android:scaleType="fitXY"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteButton"
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="50dp"
-            android:background="@drawable/del_button"/>
+            android:background="@drawable/del_button"
+            />
+
+        <ImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/edit"
+            android:scaleType="fitXY"
+            android:layout_marginLeft="60dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/editButton"
-            android:layout_width="150dp"
+            android:layout_width="110dp"
             android:layout_height="50dp"
-            android:background="@drawable/edit_button"
-            android:layout_marginLeft="60dp"/>
+            android:background="@drawable/edit_button"/>
+
     </LinearLayout>
 
 

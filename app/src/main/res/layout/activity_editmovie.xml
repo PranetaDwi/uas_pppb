@@ -18,22 +18,26 @@
             android:background="@color/bg_color"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" Update Movie List"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="20dp"
-                android:textColor="@color/pink_purple"
-                android:textSize="25sp"
-                android:fontFamily="@font/montserrat_extrabold"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="200dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@color/grey"
+                android:layout_marginTop="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Your Movie"
+                    android:layout_gravity="center"
+                    android:textColor="@color/light_blue"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/montserrat_extrabold"/>
+            </androidx.cardview.widget.CardView>
 
             <View
                 android:layout_width="350dp"
-                android:layout_height="5dp"
-                android:background="@color/white"
+                android:layout_height="3dp"
+                android:background="@color/grey"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="25dp"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -42,6 +46,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:hint="Title"
+                app:startIconTint="@color/teal_200"
+                app:startIconDrawable="@drawable/icon_title"
                 android:textColorHint="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeColor="@color/dark_blue">
@@ -61,6 +67,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:hint="Detail"
+                app:startIconTint="@color/teal_200"
+                app:startIconDrawable="@drawable/icon_detail"
                 android:textColorHint="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeColor="@color/dark_blue">
@@ -80,6 +88,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:hint="Director"
+                app:startIconTint="@color/teal_200"
+                app:startIconDrawable="@drawable/director_chair"
                 android:textColorHint="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeColor="@color/dark_blue">
@@ -99,6 +109,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 android:hint="Rate"
+                app:startIconTint="@color/teal_200"
+                app:startIconDrawable="@drawable/star2"
                 android:textColorHint="@color/white"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeColor="@color/dark_blue">
@@ -135,13 +147,21 @@
                 android:fontFamily="@font/montserrat_bold"
                 />
 
-            <ImageView
-                android:id="@+id/picturePreview"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="240dp"
+                android:layout_height="240dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:scaleType="fitXY"
-                android:layout_gravity="center_horizontal"/>
+                android:backgroundTint="@color/dark_blue"
+                app:cardCornerRadius="10dp">
+                <ImageView
+                    android:id="@+id/picturePreview"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"/>
+            </androidx.cardview.widget.CardView>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/updateButton"

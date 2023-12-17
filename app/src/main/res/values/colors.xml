@@ -13,4 +13,6 @@
     <color name="white">#FFFFFF</color>
     <color name="bg_color">#262841</color>
     <color name="red">#981441</color>
+    <color name="yellow">#FFC107</color>
+    <color name="dark2_blue">#2F2E43</color>
 </resources>

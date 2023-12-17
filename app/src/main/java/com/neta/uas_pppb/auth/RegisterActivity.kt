@@ -39,6 +39,7 @@ class RegisterActivity : AppCompatActivity() {
                 val email = emailInput.text.toString()
                 val password = passwordInput.text.toString()
                 val phone = phoneInput.text.toString()
+
                 // logic prefManager untuk menyimpan data login
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
                     Toast.makeText(this@RegisterActivity, "Mohon isi semua data", Toast.LENGTH_SHORT).show()
@@ -48,7 +49,9 @@ class RegisterActivity : AppCompatActivity() {
                     prefManager.setLoggedIn(true)
                     checkLoginStatus()
                 }
-
+            }
+            loginButton.setOnClickListener{
+                startActivity(Intent(this@RegisterActivity, MainActivity::class.java))
             }
         }
     }
@@ -62,6 +65,7 @@ class RegisterActivity : AppCompatActivity() {
                     .addOnFailureListener{
                         Log.d("RegisterActivity", "Error Updating User: ", it)
                     }
+                prefManager.saveUserId(createUserId)
                 resetForm()
             }
             . addOnFailureListener{
