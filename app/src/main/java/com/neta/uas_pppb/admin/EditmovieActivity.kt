@@ -140,6 +140,10 @@ class EditmovieActivity : AppCompatActivity() {
                 setEmptyField()
 
             }
+
+            backButton.setOnClickListener{
+                startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
+            }
         }
     }
 
@@ -164,7 +168,7 @@ class EditmovieActivity : AppCompatActivity() {
                 Log.d("UpdateActivity", "Movie successfully updated!")
 
 
-                startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
+                startActivity(Intent(this@EditmovieActivity, DetailmovieActivity::class.java))
 
             }
     }

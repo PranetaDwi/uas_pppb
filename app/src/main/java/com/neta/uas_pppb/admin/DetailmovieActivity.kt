@@ -55,6 +55,9 @@ class DetailmovieActivity : AppCompatActivity() {
                 startActivity(intentToEditmovieActivity)
             }
 
+            backButton.setOnClickListener{
+                startActivity(Intent(this@DetailmovieActivity, AdminActivity::class.java))
+            }
         }
     }
 

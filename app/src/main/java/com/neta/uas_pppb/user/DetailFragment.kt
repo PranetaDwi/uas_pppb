@@ -1,5 +1,6 @@
 package com.neta.uas_pppb.user
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -66,6 +67,10 @@ class DetailFragment : Fragment() {
             favoritButton.setOnClickListener {
                 val newFavorit = Favorites(user_id = userId, movie_id = movieId)
                 addFavorit(newFavorit)
+            }
+
+            backButton.setOnClickListener{
+                startActivity(Intent(requireActivity(), FragmentActivity::class.java))
             }
         }
 
