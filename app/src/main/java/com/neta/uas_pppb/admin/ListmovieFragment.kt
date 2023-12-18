@@ -30,6 +30,8 @@ class ListmovieFragment : Fragment() {
         const val MOVIE_DETAIL = "movie_detail"
         const val MOVIE_DIRECTOR = "movie_director"
         const val MOVIE_RATE = "movie_rate"
+        const val MOVIE_DURATION = "movie_duration"
+        const val MOVIE_GENRE = "movie_genre"
     }
 
     override fun onCreateView(
@@ -55,6 +57,8 @@ class ListmovieFragment : Fragment() {
             intentToDetailmovieActivity.putExtra(MOVIE_DETAIL, selectedMovie.detail)
             intentToDetailmovieActivity.putExtra(MOVIE_DIRECTOR, selectedMovie.director)
             intentToDetailmovieActivity.putExtra(MOVIE_RATE, selectedMovie.rate)
+            intentToDetailmovieActivity.putExtra(MOVIE_DURATION, selectedMovie.duration)
+            intentToDetailmovieActivity.putExtra(MOVIE_GENRE, selectedMovie.genre)
             startActivity(intentToDetailmovieActivity)
         }
 

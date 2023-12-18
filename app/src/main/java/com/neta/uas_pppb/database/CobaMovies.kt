@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "coba_movies")
+@Entity(tableName = "coba_movies2")
 data class CobaMovies(
     @PrimaryKey
     @ColumnInfo(name = "id")
@@ -17,6 +17,10 @@ data class CobaMovies(
     val director: String,
     @ColumnInfo(name = "rate")
     val rate: String,
+    @ColumnInfo(name = "duration")
+    val duration: String,
+    @ColumnInfo(name = "genre")
+    val genre: String,
     @ColumnInfo(name = "image")
     val image: String
 )

@@ -25,6 +25,8 @@ class MovieUserAdapter(private val context: Context, private var listMovie: Muta
                 txtTitle.text = data.title
                 txtDirector.text = data.director
                 txtRating.text = data.rate
+                txtDuration.text = data.duration
+                txtGenre.text = data.genre
                 itemView.setOnClickListener {
                     onItemClickListener?.invoke(data)
                 }

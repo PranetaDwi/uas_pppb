@@ -45,6 +45,8 @@ class DetailFragment : Fragment() {
             detailDescription.setText(arguments?.getString("detail"))
             detailDirector.setText(arguments?.getString("director"))
             detailRating.setText(arguments?.getString("rating"))
+            detailDuration.setText(arguments?.getString("duration"))
+            detailGenre.setText(arguments?.getString("genre"))
             if (image == "null"){
                 Glide.with(this@DetailFragment)
                 .load(R.drawable.loading_buffering)

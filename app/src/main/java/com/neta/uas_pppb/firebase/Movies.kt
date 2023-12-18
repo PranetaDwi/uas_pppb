@@ -11,6 +11,8 @@ data class Movies(
     var detail: String = "",
     val director: String = "",
     val rate: String = "",
+    val duration: String = "",
+    val genre: String = "",
     val image: String = ""
 
 

@@ -36,6 +36,8 @@ class DetailmovieActivity : AppCompatActivity() {
             detailDescription.text = intent.getStringExtra(ListmovieFragment.MOVIE_DETAIL)
             detailDirector.text = intent.getStringExtra(ListmovieFragment.MOVIE_DIRECTOR)
             detailRating.text = intent.getStringExtra(ListmovieFragment.MOVIE_RATE)
+            detailDuration.text = intent.getStringExtra(ListmovieFragment.MOVIE_DURATION)
+            detailGenre.text = intent.getStringExtra(ListmovieFragment.MOVIE_GENRE)
             Glide.with(this@DetailmovieActivity)
                 .load(intent.getStringExtra(ListmovieFragment.MOVIE_IMAGE))
                 .into(moviePicture)

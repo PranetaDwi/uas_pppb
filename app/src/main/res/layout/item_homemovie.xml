@@ -7,23 +7,24 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="180dp"
-        android:layout_height="270dp"
+        android:layout_height="300dp"
         app:cardElevation="5dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
         android:backgroundTint="@color/dark2_blue"
         app:cardCornerRadius="5dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/txtImage"
                 android:layout_width="match_parent"
                 android:layout_height="510px"
                 android:scaleType="fitXY"
-                android:src="@drawable/movie1"
-                />
+                android:src="@drawable/movie1" />
 
             <TextView
                 android:id="@+id/txtTitle"
@@ -33,7 +34,8 @@
                 android:text="Inception"
                 android:textColor="@color/white"
                 android:fontFamily="@font/montserrat_bold"
-                android:layout_marginLeft="10dp"/>
+                android:layout_marginLeft="10dp"
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/txtDirector"
@@ -52,8 +54,8 @@
                 android:layout_marginLeft="10dp">
 
                 <ImageView
-                    android:layout_width="10dp"
-                    android:layout_height="10dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:src="@drawable/star"
                     android:layout_gravity="center_vertical"/>
                 <TextView
@@ -61,11 +63,56 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.5"
-                    android:textSize="10sp"
+                    android:textSize="11sp"
                     android:textColor="@color/yellow"
                     android:fontFamily="@font/montserrat_bold"
                     android:layout_marginLeft="5dp"
                     android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/icon_hours"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/txtDuration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:text="1 hr"
+                    android:layout_marginLeft="3dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    />
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="80dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="0dp"
+                    android:backgroundTint="@color/red"
+                    app:cardCornerRadius="5dp">
+
+                    <TextView
+                        android:id="@+id/txtGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Comedy"
+                        android:textColor="@color/white"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:textSize="12sp"/>
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

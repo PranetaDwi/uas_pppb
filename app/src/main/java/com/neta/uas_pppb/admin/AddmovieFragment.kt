@@ -62,12 +62,14 @@ class AddmovieFragment : Fragment() {
                 val detail = detailInput.text.toString()
                 val director = directorInput.text.toString()
                 val rate = rateInput.text.toString()
+                val duration = durationInput.text.toString()
+                val genre = genreInput.text.toString()
 
                 ImageStorageRef.putFile(imgPath!!)
                     .addOnSuccessListener {
                         ImageStorageRef.downloadUrl.addOnSuccessListener {
                             val imageFile = it.toString()
-                            val newMovie = Movies(title = title, detail = detail, director = director, rate = rate, image = imageFile)
+                            val newMovie = Movies(title = title, detail = detail, director = director, rate = rate, duration = duration, genre = genre, image = imageFile)
                             addMovie(newMovie)
                             startActivity(Intent(requireContext(), AdminActivity::class.java))
                         }
@@ -142,6 +144,8 @@ class AddmovieFragment : Fragment() {
             detailInput.setText("")
             directorInput.setText("")
             rateInput.setText("")
+            durationInput.setText("")
+            genreInput.setText("")
             imgPath = null
         }
     }

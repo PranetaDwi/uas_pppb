@@ -64,7 +64,10 @@ class ListFragment : Fragment() {
             bundle.putString("detail", selectedMovie.detail)
             bundle.putString("director", selectedMovie.director)
             bundle.putString("rating", selectedMovie.rate)
+            bundle.putString("duration", selectedMovie.duration)
+            bundle.putString("genre", selectedMovie.genre)
             bundle.putString("image", selectedMovie.image)
+
             val receiverFragment = DetailFragment()
             receiverFragment.arguments = bundle
 
@@ -81,6 +84,8 @@ class ListFragment : Fragment() {
             bundle.putString("detail", selectedMovie.detail)
             bundle.putString("director", selectedMovie.director)
             bundle.putString("rating", selectedMovie.rate)
+            bundle.putString("duration", selectedMovie.duration)
+            bundle.putString("genre", selectedMovie.genre)
             bundle.putString("image", "null")
             val receiverFragment = DetailFragment()
             receiverFragment.arguments = bundle
@@ -176,12 +181,13 @@ class ListFragment : Fragment() {
                 movieModel.detail,
                 movieModel.director,
                 movieModel.rate,
+                movieModel.duration,
+                movieModel.genre,
                 movieModel.image
             )
             movieEntities.add(moviedb)
         }
         return movieEntities
     }
-
 
 }

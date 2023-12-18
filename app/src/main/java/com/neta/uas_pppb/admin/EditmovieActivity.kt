@@ -55,6 +55,8 @@ class EditmovieActivity : AppCompatActivity() {
                             detailInput.setText(documentSnapshot.getString("detail"))
                             directorInput.setText(documentSnapshot.getString("director"))
                             rateInput.setText(documentSnapshot.getString("rate"))
+                            durationInput.setText(documentSnapshot.getString("duration"))
+                            genreInput.setText(documentSnapshot.getString("genre"))
                             Glide.with(this@EditmovieActivity)
                                 .load(urlImage)
                                 .into(picturePreview)
@@ -72,6 +74,8 @@ class EditmovieActivity : AppCompatActivity() {
                 val detailInput = detailInput.text.toString()
                 val directorInput = directorInput.text.toString()
                 val rateInput = rateInput.text.toString()
+                val duration = durationInput.text.toString()
+                val genre = genreInput.text.toString()
 
                 if (imgPath != null) {
                     ImageStorageRef.putFile(imgPath!!)
@@ -84,6 +88,8 @@ class EditmovieActivity : AppCompatActivity() {
                                     detail = detailInput,
                                     director = directorInput,
                                     rate = rateInput,
+                                    duration = duration,
+                                    genre = genre,
                                     image = imageFile
                                 )
                                 updateMovie(movieId, editMovie)
@@ -91,7 +97,15 @@ class EditmovieActivity : AppCompatActivity() {
                             }
                         }
                 } else {
-                    val editMovie = Movies(id = movieId, title = titleInput, detail = detailInput, director = directorInput, rate = rateInput, image = urlImage)
+                    val editMovie = Movies(
+                        id = movieId,
+                        title = titleInput,
+                        detail = detailInput,
+                        director = directorInput,
+                        rate = rateInput,
+                        duration = duration,
+                        genre = genre,
+                        image = urlImage)
                     updateMovie(movieId, editMovie)
                 }
 
