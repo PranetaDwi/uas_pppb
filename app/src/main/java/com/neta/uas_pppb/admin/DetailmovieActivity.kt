@@ -29,6 +29,8 @@ class DetailmovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         with(binding){
             val movieId = intent.getStringExtra(ListmovieFragment.MOVIE_ID).toString()
             val urlImage = intent.getStringExtra(ListmovieFragment.MOVIE_IMAGE).toString()

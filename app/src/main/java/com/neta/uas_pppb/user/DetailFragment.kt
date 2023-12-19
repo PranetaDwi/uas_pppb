@@ -67,6 +67,7 @@ class DetailFragment : Fragment() {
             favoritButton.setOnClickListener {
                 val newFavorit = Favorites(user_id = userId, movie_id = movieId)
                 addFavorit(newFavorit)
+                favoritButton.setBackgroundResource(R.drawable.heart)
             }
 
             backButton.setOnClickListener{

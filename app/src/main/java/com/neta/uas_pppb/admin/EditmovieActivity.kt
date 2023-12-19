@@ -39,6 +39,8 @@ class EditmovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
 
         val notification = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
@@ -137,7 +139,7 @@ class EditmovieActivity : AppCompatActivity() {
                 else {
                     notification.notify(0, builder.build())
                 }
-                setEmptyField()
+
 
             }
 
@@ -168,7 +170,8 @@ class EditmovieActivity : AppCompatActivity() {
                 Log.d("UpdateActivity", "Movie successfully updated!")
 
 
-                startActivity(Intent(this@EditmovieActivity, DetailmovieActivity::class.java))
+                startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
+                setEmptyField()
 
             }
     }

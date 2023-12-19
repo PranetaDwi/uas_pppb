@@ -21,6 +21,8 @@ class FavoritesAdapter (private val context: Context, private var listMovie: Mut
                 txtTitle.text = data.title
                 txtDirector.text = data.director
                 txtRating.text = data.rate
+                txtDuration.text = data.duration
+                txtGenre.text = data.genre
             }
         }
     }

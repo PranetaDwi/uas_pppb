@@ -9,7 +9,7 @@
     <ImageView
         android:id="@+id/txtBigPicture"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="330dp"
         android:src="@drawable/movie1"
         android:alpha="0.6"
         android:scaleType="fitXY"/>
@@ -155,24 +155,45 @@
         android:background="@color/bg_color"
         android:layout_marginTop="300dp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="120dp"
-            android:layout_height="30dp"
+        <LinearLayout
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_marginTop="120dp"
-            app:cardCornerRadius="20dp"
-            android:backgroundTint="@color/grey"
-            android:layout_marginLeft="20dp">
+            android:layout_gravity="center_horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Description"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="17dp"
-                android:textSize="14sp"
-                android:textColor="@color/light_blue"
-                android:fontFamily="@font/montserrat_bold"/>
-        </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="120dp"
+                android:layout_height="30dp"
+                app:cardCornerRadius="20dp"
+                android:backgroundTint="@color/grey">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="17dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/light_blue"
+                    android:fontFamily="@font/montserrat_bold"
+                    />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/favoritButton"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/white_heart"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginLeft="200dp">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/detailDescription"
@@ -231,18 +252,6 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/favoritButton"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:text="Favorite"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:fontFamily="@font/montserrat_bold"
-            />
 
     </LinearLayout>
 </FrameLayout>
