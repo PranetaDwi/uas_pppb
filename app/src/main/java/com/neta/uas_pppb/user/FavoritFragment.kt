@@ -47,7 +47,12 @@ class FavoritFragment : Fragment() {
 
         getDataFavorit()
 
-        FavoritesAdapter = FavoritesAdapter(requireContext(), ArrayList()) {onClickMovie -> }
+        FavoritesAdapter = FavoritesAdapter(requireContext(), ArrayList(),
+                onClickMovie = { clickedMovie ->
+        },
+            onClickMovie2 = { clickedMovie ->
+            }
+        )
 
 
         FavoritesAdapter.onClickMovie = {
@@ -59,6 +64,26 @@ class FavoritFragment : Fragment() {
              rvFavorites.adapter = FavoritesAdapter
 
          }
+
+        FavoritesAdapter.onClickMovie2 = {
+         selectedMovie ->
+                val bundle = Bundle()
+                bundle.putString("movieId", selectedMovie.id)
+                bundle.putString("titles", selectedMovie.title)
+                bundle.putString("detail", selectedMovie.detail)
+                bundle.putString("director", selectedMovie.director)
+                bundle.putString("rating", selectedMovie.rate)
+                bundle.putString("duration", selectedMovie.duration)
+                bundle.putString("genre", selectedMovie.genre)
+                bundle.putString("image", selectedMovie.image)
+                val receiverFragment = DetailFragment()
+                receiverFragment.arguments = bundle
+
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frame_layout, receiverFragment)
+                transaction.addToBackStack("FavoritFragment")
+                transaction.commit()
+        }
     }
 
 

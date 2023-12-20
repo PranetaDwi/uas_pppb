@@ -8,25 +8,12 @@ import com.bumptech.glide.Glide
 import com.neta.uas_pppb.databinding.ItemFavoritBinding
 import com.neta.uas_pppb.firebase.Movies
 
-class FavoritesAdapter (private val context: Context, private var listMovie: MutableList<Movies>, var onClickMovie: (Movies)-> Unit): RecyclerView.Adapter<FavoritesAdapter.ItemFavoritsViewHolder>() {
+class FavoritesAdapter (private val context: Context, private var listMovie: MutableList<Movies>, var onClickMovie: (Movies)-> Unit, var onClickMovie2: (Movies)-> Unit): RecyclerView.Adapter<FavoritesAdapter.ItemFavoritsViewHolder>() {
 
 
     inner class ItemFavoritsViewHolder(private val binding: ItemFavoritBinding):
 
         RecyclerView.ViewHolder(binding.root){
-
-        init {
-            itemView.setOnLongClickListener{
-                val position = adapterPosition
-                if (position !=RecyclerView.NO_POSITION){
-                    val clickedMovie = listMovie[position]
-                    onClickMovie(clickedMovie)
-                    true
-                } else {
-                    false
-                }
-            }
-        }
 
         fun bindItem(data: Movies){
             with(binding){
@@ -57,6 +44,18 @@ class FavoritesAdapter (private val context: Context, private var listMovie: Mut
 
     override fun onBindViewHolder(holder: ItemFavoritsViewHolder, position: Int) {
         holder.bindItem(listMovie[position])
+
+        holder.itemView.setOnClickListener {
+            val clickedMovie = listMovie[position]
+            onClickMovie2(clickedMovie)
+        }
+
+        // Long click for removal
+        holder.itemView.setOnLongClickListener {
+            val clickedMovie = listMovie[position]
+            onClickMovie(clickedMovie)
+            true
+        }
     }
 
     override fun getItemCount(): Int = listMovie.size

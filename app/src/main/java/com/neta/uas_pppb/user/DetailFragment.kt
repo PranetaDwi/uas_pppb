@@ -39,8 +39,17 @@ class DetailFragment : Fragment() {
         prefManager = PrefManager.getInstance(requireContext())
         val userId = prefManager.getUserId()
 
-        with(binding){
+        val fragmentManager = requireActivity().supportFragmentManager
 
+        if (fragmentManager.backStackEntryCount > 0) {
+            val previousFragmentName =
+                fragmentManager.getBackStackEntryAt(fragmentManager.backStackEntryCount - 1).name
+            if (previousFragmentName == "FavoritFragment") {
+                binding.favoritButton.setBackgroundResource(R.drawable.heart)
+            }
+        }
+
+        with(binding){
             val image = arguments?.getString("image")
             detailTitle.setText(arguments?.getString("titles"))
             detailDescription.setText(arguments?.getString("detail"))
@@ -81,7 +90,7 @@ class DetailFragment : Fragment() {
             }
 
             backButton.setOnClickListener{
-                startActivity(Intent(requireActivity(), FragmentActivity::class.java))
+                requireActivity().supportFragmentManager.popBackStack()
             }
         }
 
