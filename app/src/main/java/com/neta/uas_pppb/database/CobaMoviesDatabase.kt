@@ -18,7 +18,7 @@ abstract class CobaMoviesDatabase: RoomDatabase(){
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         CobaMoviesDatabase::class.java,
-                        "coba_movie2"
+                        "coba_movie3"
                     ).build()
                 }
             }

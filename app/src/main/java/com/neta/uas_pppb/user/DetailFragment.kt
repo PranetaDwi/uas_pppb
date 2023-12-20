@@ -48,12 +48,12 @@ class DetailFragment : Fragment() {
             detailRating.setText(arguments?.getString("rating"))
             detailDuration.setText(arguments?.getString("duration"))
             detailGenre.setText(arguments?.getString("genre"))
-            if (image == "null"){
+            if (image == null){
                 Glide.with(this@DetailFragment)
                 .load(R.drawable.loading_buffering)
                 .into(moviePicture)
                 Glide.with(this@DetailFragment)
-                    .load(image)
+                    .load(R.drawable.loading_buffering)
                     .into(txtBigPicture)
             } else {
                 Glide.with(this@DetailFragment)
@@ -66,8 +66,18 @@ class DetailFragment : Fragment() {
 
             favoritButton.setOnClickListener {
                 val newFavorit = Favorites(user_id = userId, movie_id = movieId)
-                addFavorit(newFavorit)
-                favoritButton.setBackgroundResource(R.drawable.heart)
+                FavoritesCollectionRef
+                    .whereEqualTo("user_id", userId)
+                    .whereEqualTo("movie_id", movieId)
+                    .get()
+                    .addOnSuccessListener { querySnapshot ->
+                        if (!querySnapshot.isEmpty) {
+                            Toast.makeText(requireContext(), "Movie Sudah Ditambahkan ke Favorit", Toast.LENGTH_SHORT).show()
+                        } else {
+                            addFavorit(newFavorit)
+                            favoritButton.setBackgroundResource(R.drawable.heart)
+                        }
+                    }
             }
 
             backButton.setOnClickListener{

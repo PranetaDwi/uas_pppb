@@ -1,17 +1,25 @@
 package com.neta.uas_pppb.user
 
+import android.content.Context
+import android.content.Intent
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.neta.uas_pppb.firebase.Favorites
 import com.neta.uas_pppb.adapter.FavoritesAdapter
 import com.neta.uas_pppb.firebase.Movies
 import com.neta.uas_pppb.PrefManager
+import com.neta.uas_pppb.R
+import com.neta.uas_pppb.admin.AdminActivity
 import com.neta.uas_pppb.databinding.FragmentFavoritBinding
 
 class FavoritFragment : Fragment() {
@@ -36,31 +44,25 @@ class FavoritFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         prefManager = PrefManager.getInstance(requireContext())
-        val userId = prefManager.getUserId()
 
-        FavoritesAdapter = FavoritesAdapter(requireContext(), ArrayList())
+        getDataFavorit()
 
-        val favoritesQuery = FavoritesCollectionRef.whereEqualTo("user_id", userId)
+        FavoritesAdapter = FavoritesAdapter(requireContext(), ArrayList()) {onClickMovie -> }
 
+
+        FavoritesAdapter.onClickMovie = {
+                clickedFavorite -> deleteMovie(clickedFavorite.id)
+        }
 
          with(binding){
              rvFavorites.layoutManager = GridLayoutManager(requireContext(), 2)
              rvFavorites.adapter = FavoritesAdapter
 
-             favoritesQuery.get().addOnSuccessListener { favoritesSnapshot ->
-                 val favoriteList = favoritesSnapshot.toObjects(Favorites::class.java)
-                 val movieIds = favoriteList.map { it.movie_id }
-
-                 if (movieIds.isNotEmpty()){
-                     fetchMoviesByMovieIds(movieIds)
-                 }
-             }.addOnFailureListener { e ->
-                 Log.e("FavoritFragment", "Error fetching favorites: $e")
-             }
          }
     }
 
-     private fun fetchMoviesByMovieIds(movieIds: List<String>){
+
+    private fun fetchMoviesByMovieIds(movieIds: List<String>){
         val movieQuery = MoviesCollectionRef.whereIn("id", movieIds)
         movieQuery.get().addOnSuccessListener { moviesSnapshot ->
             val moviesList = moviesSnapshot.toObjects(Movies::class.java)
@@ -72,5 +74,50 @@ class FavoritFragment : Fragment() {
         }
     }
 
+    private fun deleteMovie(FavoritId : String){
+        if (FavoritId.isEmpty()){
+            Log.d("DetailActivity", "Error deleting: budget ID is empty!")
+            return
+        }
+
+        val query = FavoritesCollectionRef.whereEqualTo("movie_id", FavoritId)
+
+        query.get().addOnSuccessListener { querySnapshot ->
+            if (!querySnapshot.isEmpty) {
+                val document = querySnapshot.documents[0]
+                document.reference.delete()
+                    .addOnSuccessListener {
+                        Log.d("FavoritFragment", "Favorite successfully deleted!")
+                        Toast.makeText(requireContext(), "Berhasil Menghapus Favorit", Toast.LENGTH_SHORT).show()
+                        getDataFavorit()
+                        FavoritesAdapter.notifyDataSetChanged()
+
+
+                    }
+                    .addOnFailureListener { e ->
+                        Log.e("FavoritFragment", "Error deleting favorite: $e")
+                    }
+            } else {
+                Log.d("FavoritFragment", "Favorite not found with movie_id: $FavoritId")
+            }
+        }.addOnFailureListener { e ->
+            Log.e("FavoritFragment", "Error querying favorites: $e")
+        }
+    }
+
+    private fun getDataFavorit(){
+        val userId = prefManager.getUserId()
+        val favoritesQuery = FavoritesCollectionRef.whereEqualTo("user_id", userId)
+        favoritesQuery.get().addOnSuccessListener { favoritesSnapshot ->
+            val favoriteList = favoritesSnapshot.toObjects(Favorites::class.java)
+            val movieIds = favoriteList.map { it.movie_id }
+
+            if (movieIds.isNotEmpty()){
+                fetchMoviesByMovieIds(movieIds)
+            }
+        }.addOnFailureListener { e ->
+            Log.e("FavoritFragment", "Error fetching favorites: $e")
+        }
+    }
 
 }

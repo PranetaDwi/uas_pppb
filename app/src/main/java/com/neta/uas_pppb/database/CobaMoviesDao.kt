@@ -12,7 +12,10 @@ interface CobaMoviesDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insert(movies: List<CobaMovies>)
 
-    @get:Query("SELECT * FROM coba_movies2")
+    @get:Query("SELECT * FROM coba_movies3")
     val allMovies: LiveData<List<CobaMovies>>
+
+    @Query("DELETE FROM coba_movies3")
+    fun deleteAllMovies()
 
 }

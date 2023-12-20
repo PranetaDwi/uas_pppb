@@ -8,12 +8,25 @@ import com.bumptech.glide.Glide
 import com.neta.uas_pppb.databinding.ItemFavoritBinding
 import com.neta.uas_pppb.firebase.Movies
 
-class FavoritesAdapter (private val context: Context, private var listMovie: MutableList<Movies>): RecyclerView.Adapter<FavoritesAdapter.ItemFavoritsViewHolder>() {
+class FavoritesAdapter (private val context: Context, private var listMovie: MutableList<Movies>, var onClickMovie: (Movies)-> Unit): RecyclerView.Adapter<FavoritesAdapter.ItemFavoritsViewHolder>() {
 
 
     inner class ItemFavoritsViewHolder(private val binding: ItemFavoritBinding):
 
         RecyclerView.ViewHolder(binding.root){
+
+        init {
+            itemView.setOnLongClickListener{
+                val position = adapterPosition
+                if (position !=RecyclerView.NO_POSITION){
+                    val clickedMovie = listMovie[position]
+                    onClickMovie(clickedMovie)
+                    true
+                } else {
+                    false
+                }
+            }
+        }
 
         fun bindItem(data: Movies){
             with(binding){

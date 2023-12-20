@@ -1,17 +1,18 @@
 package com.neta.uas_pppb.admin
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.ContextThemeWrapper
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import com.neta.uas_pppb.database.MoviesDao
-import com.neta.uas_pppb.database.MoviesRoomDatabase
+import com.neta.uas_pppb.R
 import com.neta.uas_pppb.databinding.ActivityDetailmovieBinding
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class DetailmovieActivity : AppCompatActivity() {
 
@@ -31,9 +32,19 @@ class DetailmovieActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
+        val movieId = intent.getStringExtra(ListmovieFragment.MOVIE_ID).toString()
+        val urlImage = intent.getStringExtra(ListmovieFragment.MOVIE_IMAGE).toString()
+
+        val positiveButtonClick = {
+            dialog: DialogInterface, which: Int -> deleteMovie(movieId, urlImage)
+            dialog.dismiss()
+        }
+
+        val negativeButtonClick = { dialog: DialogInterface, which: Int ->
+            dialog.dismiss()
+        }
+
         with(binding){
-            val movieId = intent.getStringExtra(ListmovieFragment.MOVIE_ID).toString()
-            val urlImage = intent.getStringExtra(ListmovieFragment.MOVIE_IMAGE).toString()
             detailTitle.text = intent.getStringExtra(ListmovieFragment.MOVIE_TITLE)
             detailDescription.text = intent.getStringExtra(ListmovieFragment.MOVIE_DETAIL)
             detailDirector.text = intent.getStringExtra(ListmovieFragment.MOVIE_DIRECTOR)
@@ -46,7 +57,17 @@ class DetailmovieActivity : AppCompatActivity() {
 
 
             deleteButton.setOnClickListener{
-                deleteMovie(movieId, urlImage)
+
+                val builder = AlertDialog.Builder(this@DetailmovieActivity)
+
+                with(builder){
+                    setTitle("Delete Confirmation")
+                    setMessage("Are You Sure to Delete this Movie?")
+                    setPositiveButton("OK", DialogInterface.OnClickListener(function = positiveButtonClick))
+                    setNegativeButton(android.R.string.no, negativeButtonClick)
+                    show()
+                }
+
 
             }
 
@@ -75,6 +96,7 @@ class DetailmovieActivity : AppCompatActivity() {
             }
             .addOnSuccessListener {
                 Log.d("DetailActivity", "Budget successfully deleted!")
+                Toast.makeText(this@DetailmovieActivity, "Berhasil Menghapus Movie", Toast.LENGTH_SHORT).show()
 
             val imageStorageRef = FirebaseStorage.getInstance().getReferenceFromUrl(UrlImage)
 

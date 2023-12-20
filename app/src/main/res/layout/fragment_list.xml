@@ -55,16 +55,35 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Recently Added"
-            android:textColor="@color/white"
+            android:orientation="horizontal"
             android:layout_marginLeft="20dp"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/montserrat_bold"
-            />
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recently Added"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                />
+
+            <TextView
+                android:id="@+id/statusConnection"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/light_blue"
+                android:textSize="10sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginLeft="80dp"
+                />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

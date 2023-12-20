@@ -33,7 +33,6 @@ class ListFragment : Fragment() {
     private lateinit var prefManager: PrefManager
     private lateinit var MovieUserAdapter: MovieUserAdapter
     private lateinit var MovieUserOfflineAdapter: MovieUserOfflineAdapter
-    private lateinit var mMoviesDao: MoviesDao
     private lateinit var executorService: ExecutorService
     private lateinit var mCobaMoviesDao: CobaMoviesDao
 
@@ -50,12 +49,12 @@ class ListFragment : Fragment() {
 
         prefManager = PrefManager.getInstance(requireContext())
 
+        MovieUserAdapter = MovieUserAdapter(requireContext(), ArrayList())
+        MovieUserOfflineAdapter = MovieUserOfflineAdapter(requireContext(), ArrayList())
+
         executorService = Executors.newSingleThreadExecutor()
         val dbbb = CobaMoviesDatabase.getDatabase(requireContext())
         mCobaMoviesDao = dbbb!!.cobaMoviesDao()!!
-
-        MovieUserAdapter = MovieUserAdapter(requireContext(), ArrayList())
-        MovieUserOfflineAdapter = MovieUserOfflineAdapter(requireContext(), ArrayList())
 
         MovieUserAdapter.setOnItemClickListener { selectedMovie ->
             val bundle = Bundle()
@@ -86,7 +85,7 @@ class ListFragment : Fragment() {
             bundle.putString("rating", selectedMovie.rate)
             bundle.putString("duration", selectedMovie.duration)
             bundle.putString("genre", selectedMovie.genre)
-            bundle.putString("image", "null")
+            bundle.putString("image", selectedMovie.image)
             val receiverFragment = DetailFragment()
             receiverFragment.arguments = bundle
 
@@ -99,10 +98,13 @@ class ListFragment : Fragment() {
         with(binding){
             rvMovieUser.layoutManager = GridLayoutManager(requireContext(), 2)
             if (checkInternetConnection(requireContext())){
+                getMovies()
+                MovieUserAdapter.notifyDataSetChanged()
                 rvMovieUser.adapter = MovieUserAdapter
                 fetchDataFromFirestoreAndSaveToLocal()
-                getMovies()
+
             } else {
+                statusConnection.text = "No Internet Connection"
                 rvMovieUser.adapter = MovieUserOfflineAdapter
                 getMoviesOffline()
             }
@@ -111,17 +113,28 @@ class ListFragment : Fragment() {
     }
 
     fun getMovies(){
-        MoviesCollectionRef.get().addOnSuccessListener {
-                querySnapshot -> val movies = ArrayList<Movies>()
-
-            for (document in querySnapshot){
-                val movieData = document.toObject(Movies::class.java)
-                movies.add(movieData)
+        MoviesCollectionRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.e("FirestoreListener", "Listen failed.", e)
+                return@addSnapshotListener
             }
-            MovieUserAdapter.setData(movies)
-            MovieUserAdapter.notifyDataSetChanged()
+
+            if (snapshot != null && !snapshot.isEmpty) {
+                val movies = ArrayList<Movies>()
+
+                for (document in snapshot) {
+                    val movieData = document.toObject(Movies::class.java)
+                    movies.add(movieData)
+                }
+
+                MovieUserAdapter.setData(movies)
+                MovieUserAdapter.notifyDataSetChanged()
+            } else {
+                Log.d("FirestoreListener", "No documents found.")
+            }
         }
     }
+
 
     fun getMoviesOffline() {
         mCobaMoviesDao.allMovies.observe(viewLifecycleOwner) { movie ->
@@ -150,16 +163,20 @@ class ListFragment : Fragment() {
 
     // coba pake punya klin
     private fun fetchDataFromFirestoreAndSaveToLocal(){
+
         Log.d("FirebaseToLocal", "Mulai penyalinan data dari Firestore ke lokal")
 
         MoviesCollectionRef.get().addOnSuccessListener { documents ->
             val movieModels = mutableListOf<Movies>()
             for (document in documents){
                 val movie = document.toObject<Movies>()
+                Log.d("FirestoreData", "Firestore Data: $movie")
                 movieModels.add(movie)
+                Log.d("FirestoreData", "suskses menambahkan ke movie model")
             }
             val movieEntities = convertToMovieEntity(movieModels)
             CoroutineScope(Dispatchers.IO).launch {
+                mCobaMoviesDao.deleteAllMovies()
                 mCobaMoviesDao.insert(movieEntities)
                 withContext(Dispatchers.Main){
                     Log.d("FirebaseToLocal", "Sukses menyalin data")
@@ -168,8 +185,6 @@ class ListFragment : Fragment() {
         }.addOnFailureListener{ exception ->
             Log.e("FireStore", "Error getting documents")
         }
-
-
     }
 
     private fun convertToMovieEntity(movieModels: List<Movies>): List<CobaMovies>{
@@ -186,6 +201,7 @@ class ListFragment : Fragment() {
                 movieModel.image
             )
             movieEntities.add(moviedb)
+            Log.d("FirebaseToLocal", "berhasil jadi object")
         }
         return movieEntities
     }

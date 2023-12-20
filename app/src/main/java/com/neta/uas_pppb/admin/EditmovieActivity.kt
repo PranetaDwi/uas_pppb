@@ -17,13 +17,8 @@ import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.neta.uas_pppb.R
-import com.neta.uas_pppb.database.MoviesDao
-import com.neta.uas_pppb.database.MoviesRoomDatabase
-import com.neta.uas_pppb.database.Moviesdb
 import com.neta.uas_pppb.firebase.Movies
 import com.neta.uas_pppb.databinding.ActivityEditmovieBinding
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 class EditmovieActivity : AppCompatActivity() {
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".user.FavoritFragment"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    android:id="@+id/FavoriteFragment">
 
 
     <LinearLayout
