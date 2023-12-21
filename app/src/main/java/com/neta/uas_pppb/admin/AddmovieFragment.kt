@@ -23,7 +23,6 @@ import com.neta.uas_pppb.R
 import com.neta.uas_pppb.firebase.Movies
 import com.neta.uas_pppb.databinding.FragmentAddmovieBinding
 
-
 class AddmovieFragment : Fragment() {
 
     private val firestore = FirebaseFirestore.getInstance()

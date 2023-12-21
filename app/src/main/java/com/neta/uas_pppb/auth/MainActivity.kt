@@ -18,10 +18,6 @@ class MainActivity : AppCompatActivity() {
     private val usersCollectionRef = firestore.collection("users")
     private var userId : String = ""
 
-    companion object {
-        const val USER_ID = "user_id"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -91,8 +87,6 @@ class MainActivity : AppCompatActivity() {
             if (prefManager.getUsername() == "adminkeren" && prefManager.getPassword() == "haloneta"){
                 startActivity(Intent(this@MainActivity, AdminActivity::class.java))
             } else {
-//                val intentToFragmentActivity = Intent(this@MainActivity, FragmentActivity::class.java)
-//                intentToFragmentActivity.putExtra(USER_ID, userId)
                 startActivity(Intent(this@MainActivity, FragmentActivity::class.java))
             }
             finish()

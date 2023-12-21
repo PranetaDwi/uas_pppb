@@ -90,7 +90,6 @@ class EditmovieActivity : AppCompatActivity() {
                                     image = imageFile
                                 )
                                 updateMovie(movieId, editMovie)
-
                             }
                         }
                 } else {
@@ -134,10 +133,7 @@ class EditmovieActivity : AppCompatActivity() {
                 else {
                     notification.notify(0, builder.build())
                 }
-
-
             }
-
             backButton.setOnClickListener{
                 startActivity(Intent(this@EditmovieActivity, AdminActivity::class.java))
             }

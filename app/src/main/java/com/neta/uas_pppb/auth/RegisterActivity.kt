@@ -28,9 +28,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        val intentToFragmentActivity = Intent(this@RegisterActivity, FragmentActivity::class.java)
-
-        // prefManager
         prefManager = PrefManager.getInstance(this)
 
         with(binding){
@@ -40,7 +37,6 @@ class RegisterActivity : AppCompatActivity() {
                 val password = passwordInput.text.toString()
                 val phone = phoneInput.text.toString()
 
-                // logic prefManager untuk menyimpan data login
                 if (name.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
                     Toast.makeText(this@RegisterActivity, "Mohon isi semua data", Toast.LENGTH_SHORT).show()
                 }else{

@@ -18,7 +18,6 @@ import com.neta.uas_pppb.databinding.FragmentDetailBinding
 class DetailFragment : Fragment() {
 
     private val firestore = FirebaseFirestore.getInstance()
-    private val MoviesCollectionRef = firestore.collection("movies")
     private val FavoritesCollectionRef = firestore.collection("favorites")
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!

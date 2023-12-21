@@ -54,7 +54,6 @@ class FavoritFragment : Fragment() {
             }
         )
 
-
         FavoritesAdapter.onClickMovie = {
                 clickedFavorite -> deleteMovie(clickedFavorite.id)
         }
@@ -85,7 +84,6 @@ class FavoritFragment : Fragment() {
                 transaction.commit()
         }
     }
-
 
     private fun fetchMoviesByMovieIds(movieIds: List<String>){
         val movieQuery = MoviesCollectionRef.whereIn("id", movieIds)

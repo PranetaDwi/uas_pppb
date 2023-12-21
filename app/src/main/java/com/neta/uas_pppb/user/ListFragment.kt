@@ -135,7 +135,6 @@ class ListFragment : Fragment() {
         }
     }
 
-
     fun getMoviesOffline() {
         mCobaMoviesDao.allMovies.observe(viewLifecycleOwner) { movie ->
             MovieUserOfflineAdapter.setData(movie)

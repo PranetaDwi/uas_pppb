@@ -32,8 +32,6 @@ class ProfileFragment : Fragment() {
 
         prefManager = PrefManager.getInstance(requireContext())
 
-//        val userId = arguments?.getString("userId").toString()
-
         with(binding){
             val userId = prefManager.getUserId()
 
