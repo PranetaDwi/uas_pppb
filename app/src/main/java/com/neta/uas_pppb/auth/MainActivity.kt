@@ -80,18 +80,15 @@ class MainActivity : AppCompatActivity() {
         return username == inputUsername && password == inputPassword
     }
 
-    private fun checkLoginStatus(){
+    private fun checkLoginStatus() {
         val isLoggedIn = prefManager.isLoggedIn()
         if (isLoggedIn) {
-            Toast.makeText(this@MainActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-            if (prefManager.getUsername() == "adminkeren" && prefManager.getPassword() == "haloneta"){
+            if (prefManager.getUsername() == "adminkeren" && prefManager.getPassword() == "haloneta") {
                 startActivity(Intent(this@MainActivity, AdminActivity::class.java))
             } else {
                 startActivity(Intent(this@MainActivity, FragmentActivity::class.java))
             }
             finish()
-        } else {
-            Toast.makeText(this@MainActivity, "Login gagal", Toast.LENGTH_SHORT).show()
         }
     }
 }
